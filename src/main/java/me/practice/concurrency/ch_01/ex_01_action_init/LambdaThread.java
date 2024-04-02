@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_01.action_init;
+package me.practice.concurrency.ch_01.ex_01_action_init;
 
 public class LambdaThread {
     public static void main(String[] args) {
