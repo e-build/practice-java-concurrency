@@ -1,6 +1,6 @@
 package me.practice.concurrency.ch_05.ex_02_cpu_sync;
 
-public class CpuSyncExample {
+public class CpuSync {
     private static int count = 0;
     private static final int ITERATIONS = 100000;
 
@@ -8,7 +8,7 @@ public class CpuSyncExample {
 
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < ITERATIONS; i++) {
-                synchronized(CpuSyncExample.class) {
+                synchronized(CpuSync.class) {
                     count++;
                 }
             }
@@ -16,7 +16,7 @@ public class CpuSyncExample {
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < ITERATIONS; i++) {
-                synchronized(CpuSyncExample.class) {
+                synchronized(CpuSync.class) {
                     count++;
                 }
             }

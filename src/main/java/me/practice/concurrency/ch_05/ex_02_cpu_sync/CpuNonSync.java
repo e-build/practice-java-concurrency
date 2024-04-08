@@ -1,6 +1,6 @@
 package me.practice.concurrency.ch_05.ex_02_cpu_sync;
 
-public class CpuNonSyncExample {
+public class CpuNonSync {
     private static int count = 0;
     private static final int ITERATIONS = 100000;
 
