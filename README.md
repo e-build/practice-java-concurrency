@@ -62,9 +62,9 @@
   - 대기(Wait): 특정 조건이 만족되지 않았을 때, 스레드는 조건이 충족될 때까지 대기. 대기 중인 스레드는 CPU 시간을 소비하지 않음.
   - 알림(Notify): 조건이 충족되면, 대기 중인 스레드 중 하나 또는 모든 스레드에게 알림을 보내어 작업을 계속할 수 있도록 함.
 - Spinlock (스핀락)
-  - 스핀락은 바쁜 대기(Busy Waiting)를 하는 잠금 메커니즘. 
+  - 바쁜 대기(Busy Waiting)를 하는 잠금 메커니즘. 
   - 락을 획득하려는 스레드는 잠금이 해제될 때까지 루프를 돌며 계속 획득 시도. 
-  - 스핀락은 컨텍스트 스위치가 발생하지 않기 때문에 잠금을 기다리는 시간이 짧을 경우 오버헤드가 낮음.
+  - 컨텍스트 스위치가 없기 때문에 잠금을 기다리는 시간이 짧을 경우 오버헤드가 낮음.
   - 단순 스핀락
     - 잠금이 해제될 때까지 루프를 돌며 계속 시도, 
   - 하드웨어 지원을 받는 스핀락
@@ -72,6 +72,40 @@
       - TAS(Test-And-Set) Lock, CAS(Compare-And-Swap) Lock 등 
       - 최적화된 스핀락 구현체는 스레드가 CPU 코어를 과도하게 점유하지 않도록 하며, 필요에 따라 백오프(Back-off) 전략을 사용하여 스핀 회수를 조절할 수 있음.
 # Chapter 7
+- 동기화
+  - 인스턴스 메서드 동기화: 인스턴스 메서드에 synchronized 키워드를 사용하면, 메서드가 속한 객체(this)를 모니터로 사용. 객체의 인스턴스 수준에서 동기화를 제공. 
+  - 정적 메서드 동기화: 정적 메서드에 synchronized 키워드를 사용하면, 메서드가 속한 클래스의 Class 객체를 모니터로 사용. 클래스 수준에서 동기화를 제공하며, 모든 인스턴스에 걸쳐서 동기화가 이루어짐. 
+  - 인스턴스 블록 동기화: 특정 객체(this)의 블록에 synchronized 키워드를 사용하여, 해당 객체에 대한 동기화 블록을 만듬. 이는 인스턴스 메서드 동기화와 유사하지만, 코드의 특정 부분만을 동기화할 수 있는 유연성을 제공. 
+  - 별도의 객체를 사용한 동기화: 특정 객체(lockObject)에 대한 동기화 블록을 만듬. 이 방식은 동기화를 위해 별도의 객체를 명시적으로 지정하며, 동기화의 범위를 해당 객체로 한정함. 
+  - 클래스를 모니터로 사용한 동기화: 클래스 자체(MethodBlockSynchronizedExamples.class)를 모니터로 사용하는 동기화 블록을 구현함. 정적 메서드 동기화와 유사한 효과를 가지며, 클래스 수준에서의 동기화를 제공함. 
+  - 별도의 클래스를 모니터로 사용한 동기화: 다른 클래스(MethodBlock.class)를 모니터로 사용하는 동기화 블록을 구현함. 이 방식은 동기화를 위해 외부 클래스를 사용하며, 해당 클래스의 Class 객체를 모니터로 활용.
+- Reentrant Lock (재진입 가능한 잠금)
+  - 한 스레드가 어떤 잠금을 획득한 상태에서 같은 잠금을 추가로 획득할 수 있는 속성
+  - 스레드가 같은 잠금을 여러 번 획득하고 해제할 수 있음을 의미하며, 잠금을 소유한 스레드가 블록되지 않고, 해당 잠금에 의해 보호되는 임계 구역에 자유롭게 다시 접근할 수 있게 함
+  - 재진입 가능한 잠금은 스레드가 이미 획득한 잠금을 기다리면서 발생할 수 있는 데드락 상황을 방지
+  - Synchronized: Java에서 synchronized 키워드는 메서드나 코드 블록에 대한 동기화를 제공하며, 내장된 잠금(모니터 락)은 자동으로 재진입 가능.
+  - ReentrantLock: ReentrantLock은 Java의 `java.util.concurrent.locks` 패키지에 있는 명시적 잠금 메커니즘이며, synchronized에 비해 더 고급 기능(예: 공정성 설정, 시도 타임아웃)을 제공
+  - 예제
+  
+    outerMethod와 innerMethod 모두 synchronized 키워드로 동기화되어 있음. outerMethod가 호출되어 잠금을 획득한 후, 같은 객체의 innerMethod를 호출할 때 추가적인 잠금 없이 접근. 
+    ```java
+    public class SynchronizedExample {
+      public synchronized void outerMethod() {
+          System.out.println("외부 메서드 시작");
+          innerMethod();
+          System.out.println("외부 메서드 종료");
+      }
+  
+      public synchronized void innerMethod() {
+          System.out.println("내부 메서드");
+      }
+  
+      public static void main(String[] args) {
+          SynchronizedExample example = new SynchronizedExample();
+          example.outerMethod();
+      }
+    }
+    ```
 # Chapter 8
 # Chapter 9
 # Chapter 10
