@@ -1,6 +1,6 @@
-package me.practice.concurrency.ch_07.ex_01.block;
+package me.practice.concurrency.ch_07.ex_01_synchronized.block;
 
-public class InstanceBlockSynchronizedExamples2 {
+public class InstanceBlockSynchronizedExamples {
 
     private int count = 0;
 
@@ -20,30 +20,29 @@ public class InstanceBlockSynchronizedExamples2 {
     }
     public static void main(String[] args){
 
-        InstanceBlockSynchronizedExamples2 example1 = new InstanceBlockSynchronizedExamples2();
-        InstanceBlockSynchronizedExamples2 example2 = new InstanceBlockSynchronizedExamples2();
+        InstanceBlockSynchronizedExamples example = new InstanceBlockSynchronizedExamples();
 
         Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) {
-                example1.incrementBlockThis();
+            for (int i = 0; i < 100_000; i++) {
+                example.incrementBlockThis();
             }
         },"스레드 1");
 
         Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) {
-                example2.incrementBlockThis();
+            for (int i = 0; i < 100_000; i++) {
+                example.incrementBlockThis();
             }
         },"스레드 2");
 
         Thread thread3 = new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) {
-                example1.incrementBlockLockObject();
+            for (int i = 0; i < 100_000; i++) {
+                example.incrementBlockLockObject();
             }
         },"스레드 3");
 
         Thread thread4 = new Thread(() -> {
-            for (int i = 0; i < 1000000; i++) {
-                example2.incrementBlockLockObject();
+            for (int i = 0; i < 100_000; i++) {
+                example.incrementBlockLockObject();
             }
         },"스레드 4");
 
@@ -57,15 +56,11 @@ public class InstanceBlockSynchronizedExamples2 {
             thread2.join();
             thread3.join();
             thread4.join();
-
-            System.out.println("최종값:"  + example1.count);
-            System.out.println("최종값:"  + example2.count);
-
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-
+        System.out.println("최종값:"  + example.count);
 
     }
 }

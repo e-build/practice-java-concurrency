@@ -1,6 +1,6 @@
-package me.practice.concurrency.ch_07.ex_01.method;
+package me.practice.concurrency.ch_07.ex_01_synchronized.method;
 
-public class InstanceMethodSynchronizedExamples2 {
+public class InstanceMethodSynchronizedExamples {
 
     private int count = 0;
 
@@ -19,20 +19,17 @@ public class InstanceMethodSynchronizedExamples2 {
 
     public static void main(String[] args) {
 
-        InstanceMethodSynchronizedExamples2 counter1 = new InstanceMethodSynchronizedExamples2();
-        InstanceMethodSynchronizedExamples2 counter2 = new InstanceMethodSynchronizedExamples2();
+        InstanceMethodSynchronizedExamples counter = new InstanceMethodSynchronizedExamples();
 
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 100_000; i++) {
-                counter1.increment();
-                counter2.decrement();
+                counter.increment();
             }
         });
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 100_000; i++) {
-                counter2.increment();
-                counter1.decrement();
+                counter.decrement();
             }
         });
 
@@ -46,7 +43,7 @@ public class InstanceMethodSynchronizedExamples2 {
             throw new RuntimeException(e);
         }
 
-        System.out.println("최종값:"  + counter1.getCount());
-        System.out.println("최종값:"  + counter2.getCount());
+        System.out.println("최종값:"  + counter.getCount());
+
     }
 }

@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_01.block;
+package me.practice.concurrency.ch_07.ex_01_synchronized.block;
 
 class MethodBlock{}
 public class StaticBlockSynchronizedExamples {

@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_03;
+package me.practice.concurrency.ch_07.ex_02_volatile;
 
 public class VolatileExample {
 //     volatile 키워드 추가

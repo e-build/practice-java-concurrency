@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_01;
+package me.practice.concurrency.ch_07.ex_01_synchronized;
 
 class BankAccount {
     private double balance;

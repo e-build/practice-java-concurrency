@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_02;
+package me.practice.concurrency.ch_06.ex_03;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -39,7 +39,7 @@ class SharedQueue {
     }
 }
 
-public class ProducerConsumerExample {
+public class ProducerConsumerSimple {
 
     public static void main(String[] args) {
         SharedQueue sharedQueue = new SharedQueue();

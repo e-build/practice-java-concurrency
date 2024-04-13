@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_03;
+package me.practice.concurrency.ch_07.ex_02_volatile;
 
 public class HappensBeforeExample {
     private int x = 0;

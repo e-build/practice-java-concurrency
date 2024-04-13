@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_01;
+package me.practice.concurrency.ch_07.ex_01_synchronized;
 
 public class SynchronizedExamples {
     private int instanceCount = 0;

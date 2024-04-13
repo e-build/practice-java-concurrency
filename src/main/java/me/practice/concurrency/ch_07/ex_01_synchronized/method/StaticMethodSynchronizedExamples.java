@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_07.ex_01.method;
+package me.practice.concurrency.ch_07.ex_01_synchronized.method;
 
 public class StaticMethodSynchronizedExamples {
 
