@@ -134,5 +134,16 @@
     - 자바의 Unsafe 클래스와 CPU의 CAS (Compare-And-Swap) 명령에 대한 이해 필요.  
     - Unsafe 클래스는 저수준 연산을 수행하는 메서드를 제공하며, 이 중 하나가 compareAndSwapInt임. 이 메서드는 원자적 비교 및 교환 연산을 수행하며, 이는 CPU의 CAS 명령을 사용하여 구현됨.  
     - CAS 명령은 메모리 위치의 현재 값이 예상 값과 일치하는지 확인하고, 일치하는 경우에만 새로운 값으로 메모리 위치를 업데이트. 이 모든 작업은 원자적으로 수행되므로, 다른 스레드가 동시에 해당 메모리 위치를 수정할 수 없음.
+- CountDownLatch (카운트다운 래치)
+  - CountDownLatch는 주어진 카운트가 0이 될 때까지 대기하는 동기화 매커니즘. 
+  - CountDownLatch는 주로 한 스레드가 다른 여러 스레드가 수행하는 작업을 기다리는 데 사용됨.
+- CyclicBarrier
+  - 여러 스레드가 특정 지점에서 서로 기다리도록 하는 동기화 도구.
+  - 여러 스레드가 동시에 시작하거나, 모든 스레드가 특정 계산을 완료할 때까지 기다리는 등의 동기화 작업을 수행할 수 있음
+  - CyclicBarrier vs CountDownLatch
+    - 유사하지만, 다음과 같은 차이점이 있음
+      - CountDownLatch는 카운트가 0이 되면 재사용할 수 없지만, CyclicBarrier는 재사용 가능
+      - CountDownLatch는 하나의 스레드가 다른 여러 스레드의 작업 완료를 기다리는 데 사용됨. 반면에 CyclicBarrier는 여러 스레드가 서로를 기다리는 데 사용됨. 즉, 모든 스레드가 특정 지점에 도달할 때까지 기다리는 것.
+      - CountDownLatch의 카운트는 외부 이벤트(countDown())에 의해 감소되지만, CyclicBarrier의 경우는 스레드가 장벽에 도달(await())할 때마다 내부 카운트가 감소.
 # Chapter 10
 # Chapter 11
