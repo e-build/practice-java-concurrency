@@ -116,6 +116,15 @@
     - 성능 저하 가능성: volatile 변수는 CPU 캐시 대신 메인 메모리에서 직접 작업하므로 성능에 영향을 줄 수 있음. 특히, 변수가 매우 빈번하게 읽기 또는 쓰기되는 경우 성능 저하가 발생함. 또한, volatile 변수가 많은 경우에는 캐시 일관성(cache coherence)을 유지하기 위해 오버헤드 발생.
   - 단순 상태 플래그와 같은 간단한 용도에만 사용하는 것이 안전함
 # Chapter 8
+- java lock API
+  - java.util.concurrent.locks.Lock
+    - lock: unlock() 메서드를 호출하기 전까지 다른 스레드가 lock() 메서드를 호출하면 대기 상태로 전환됨. 
+    - tryLock: 현재 스레드가 lock을 획득할 수 있는지 여부를 반환. 획득할 수 있다면 true를 반환하고 lock 을 획득함.
+- java ReadWriteLock API
+  - java.util.concurrent.locks.ReadWriteLock
+    - ReadLock: 읽기 락을 획득하기 위한 인터페이스. 읽기 락은 여러 스레드가 동시에 획득할 수 있음. 읽기 락을 획득한 스레드는 다른 스레드가 쓰기 락을 획득하지 못하게 함. 
+    - WriteLock: 쓰기 락을 획득하기 위한 인터페이스. 쓰기 락은 하나의 스레드만 획득할 수 있음. 쓰기 락을 획득한 스레드는 다른 스레드가 읽기 락이나 쓰기 락을 획득하지 못하게 함.
+  - 
 # Chapter 9
 # Chapter 10
 # Chapter 11
