@@ -14,7 +14,7 @@ public class Parallelism {
         final long sum1 = calculateParallel(cpuCores);
         long endTime1 = System.currentTimeMillis();
 
-        System.out.println("CPU 개수를 초과하는 데이터를 병렬로 처리하는 데 걸린 시간: " + (endTime1 - startTime1) + "ms");
+        System.out.println("CPU 개수의 데이터를 병렬로 처리하는 데 걸린 시간: " + (endTime1 - startTime1) + "ms");
 
         // CPU 개수를 초과하는 데이터를 병렬로 처리
         long startTime2 = System.currentTimeMillis();
@@ -29,7 +29,7 @@ public class Parallelism {
         for (int i = 0; i < cpuCores; i++) {
             data.add(i);
         }
-        long sum2 = data.parallelStream()
+        return data.parallelStream()
                 .mapToLong(i -> {
                     try {
                         Thread.sleep(500);
@@ -39,6 +39,5 @@ public class Parallelism {
                     return i * i;
                 })
                 .sum();
-        return sum2;
     }
 }
