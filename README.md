@@ -163,4 +163,24 @@
       - CountDownLatch는 하나의 스레드가 다른 여러 스레드의 작업 완료를 기다리는 데 사용됨. 반면에 CyclicBarrier는 여러 스레드가 서로를 기다리는 데 사용됨. 즉, 모든 스레드가 특정 지점에 도달할 때까지 기다리는 것.
       - CountDownLatch의 카운트는 외부 이벤트(countDown())에 의해 감소되지만, CyclicBarrier의 경우는 스레드가 장벽에 도달(await())할 때마다 내부 카운트가 감소.
 # Chapter 10
+- 자바의 Thread pool 추상화
+  - Executor 인터페이스
+    - Executor 인터페이스는 스레드 풀을 추상화한 인터페이스로, 작업 실행에 대한 API 제공
+  - ExecutorService 인터페이스
+    - ExecutorService 인터페이스는 Executor 인터페이스를 확장한 인터페이스로, 스레드 풀을 관리하는 데 사용됨. 
+    - 스레드 풀의 생성, 작업 스케줄링, 작업 완료 여부 확인 등의 기능을 제공함.
+  - Executors 클래스
+    - Executor 인터페이스의 구현체를 생성하는 팩토리 메서드 제공 
+- SingleThreadPool
+  - 스레드 풀의 크기가 1인 스레드 풀.
+- FixedThreadPool
+  - 스레드 풀의 크기가 고정된 스레드 풀.
+- ScheduledThreadPool
+  - 스케줄링 기능을 제공하는 스레드 풀.
+  - schedule(): 특정 시간 이후에 작업을 한번 실행하도록 예약할 수 있음
+  - scheduleAtFixedRate(): 주기적으로 작업을 실행하며, 이전 작업의 **시작 시간**부터 일정 시간 간격으로 작업을 실행할 수 있음.
+  - scheduleWithFixedDelay(): 주기적으로 작업을 실행하며, 이전 작업의 **종료 시간**부터 일정 시간 간격으로 작업을 실행할 수 있음.
+- CachedThreadPool
+  - 필요에 따라 스레드를 생성하고 재사용하는 스레드 풀.
+  - 스레드 풀의 크기가 유동적으로 변하며, 코어 스레드 수와 최대 스레드 수를 설정할 수 있음. 작업이 많은 경우에는 새로운 스레드를 생성하고, 작업이 적은 경우에는 스레드를 종료하여 자원을 절약할 수 있음.
 # Chapter 11
