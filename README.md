@@ -166,21 +166,39 @@
 - 자바의 Thread pool 추상화
   - Executor 인터페이스
     - Executor 인터페이스는 스레드 풀을 추상화한 인터페이스로, 작업 실행에 대한 API 제공
-  - ExecutorService 인터페이스
-    - ExecutorService 인터페이스는 Executor 인터페이스를 확장한 인터페이스로, 스레드 풀을 관리하는 데 사용됨. 
-    - 스레드 풀의 생성, 작업 스케줄링, 작업 완료 여부 확인 등의 기능을 제공함.
-  - Executors 클래스
-    - Executor 인터페이스의 구현체를 생성하는 팩토리 메서드 제공 
-- SingleThreadPool
-  - 스레드 풀의 크기가 1인 스레드 풀.
-- FixedThreadPool
-  - 스레드 풀의 크기가 고정된 스레드 풀.
-- ScheduledThreadPool
-  - 스케줄링 기능을 제공하는 스레드 풀.
-  - schedule(): 특정 시간 이후에 작업을 한번 실행하도록 예약할 수 있음
-  - scheduleAtFixedRate(): 주기적으로 작업을 실행하며, 이전 작업의 **시작 시간**부터 일정 시간 간격으로 작업을 실행할 수 있음.
-  - scheduleWithFixedDelay(): 주기적으로 작업을 실행하며, 이전 작업의 **종료 시간**부터 일정 시간 간격으로 작업을 실행할 수 있음.
-- CachedThreadPool
-  - 필요에 따라 스레드를 생성하고 재사용하는 스레드 풀.
-  - 스레드 풀의 크기가 유동적으로 변하며, 코어 스레드 수와 최대 스레드 수를 설정할 수 있음. 작업이 많은 경우에는 새로운 스레드를 생성하고, 작업이 적은 경우에는 스레드를 종료하여 자원을 절약할 수 있음.
+    - ExecutorService 인터페이스
+      - ExecutorService 인터페이스는 Executor 인터페이스를 확장한 인터페이스로, 스레드 풀을 관리하는 데 사용됨. 
+      - 스레드 풀의 생성, 작업 스케줄링, 작업 완료 여부 확인 등의 기능을 제공함.
+    - Executors 클래스
+      - Executor 인터페이스의 구현체를 생성하는 팩토리 메서드 제공 
+  - SingleThreadPool
+    - 스레드 풀의 크기가 1인 스레드 풀.
+  - FixedThreadPool
+    - 스레드 풀의 크기가 고정된 스레드 풀.
+  - ScheduledThreadPool
+    - 스케줄링 기능을 제공하는 스레드 풀.
+    - schedule(): 특정 시간 이후에 작업을 한번 실행하도록 예약할 수 있음
+    - scheduleAtFixedRate(): 주기적으로 작업을 실행하며, 이전 작업의 **시작 시간**부터 일정 시간 간격으로 작업을 실행할 수 있음.
+    - scheduleWithFixedDelay(): 주기적으로 작업을 실행하며, 이전 작업의 **종료 시간**부터 일정 시간 간격으로 작업을 실행할 수 있음.
+  - CachedThreadPool
+    - 필요에 따라 스레드를 생성하고 재사용하는 스레드 풀.
+    - 스레드 풀의 크기가 유동적으로 변하며, 코어 스레드 수와 최대 스레드 수를 설정할 수 있음. 작업이 많은 경우에는 새로운 스레드를 생성하고, 작업이 적은 경우에는 스레드를 종료하여 자원을 절약할 수 있음.
+- ThreadPoolExecutor
+  - ThreadPoolExecutor 클래스는 ExecutorService 인터페이스를 구현한 스레드 풀 클래스로, 스레드 풀의 동작을 세부적으로 제어할 수 있음.
+  - 제어 속성
+    - policy
+      - AbortPolicy: 스레드 풀이 작업을 처리할 수 없을 때 예외를 발생시키는 정책. 기본값
+      - CallerRunsPolicy: 스레드 풀이 작업을 처리할 수 없을 때 현재 스레드에서 작업을 실행하는 정책.
+      - DiscardOldestPolicy: 스레드 풀이 작업을 처리할 수 없을 때 가장 오래된 작업을 제거하는 정책.
+      - DiscardPolicy: 스레드 풀이 작업을 처리할 수 없을 때 작업을 무시하는 정책.
+      - CustomPolicy: 사용자 정의 정책을 구현할 수 있음.
+    - keepAliveTime
+      - 스레드 풀이 코어 스레드 수 이상의 스레드를 가지고 있을 때, keepAliveTime 시간 동안 작업이 없으면 코어 스레드가 아닌 스레드는 종료됨
+    - prestartAllCoreThreads() 
+      - 스레드 풀의 코어 스레드를 사전에 생성하여 시작시킴. 작업이 생성될 때 대기 시간 없이 작업을 처리하도록 하기 위해 사용될
+    - hook
+      - ThreadPoolExecutor 를 상속하여 hook을 정의할 수 있음 
+      - beforeExecute(): 작업 실행 전에 호출되는 메서드
+      - afterExecute(): 작업 실행 후에 호출되는 메서드
+      - terminated(): 스레드 풀이 종료될 때 호출되는 메서드
 # Chapter 11

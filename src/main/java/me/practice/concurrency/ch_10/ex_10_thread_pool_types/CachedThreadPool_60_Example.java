@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_10.ex_10_thread_pool_2;
+package me.practice.concurrency.ch_10.ex_10_thread_pool_types;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

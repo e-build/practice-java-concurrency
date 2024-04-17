@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_10.ex_01_thread_pool_1;
+package me.practice.concurrency.ch_10.ex_01_thread_pool_custom;
 
 import java.util.LinkedList;
 import java.util.Queue;
