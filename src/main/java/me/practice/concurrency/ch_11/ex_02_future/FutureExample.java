@@ -1,4 +1,4 @@
-package me.practice.concurrency.ch_11.ex_02;
+package me.practice.concurrency.ch_11.ex_02_future;
 
 import java.util.concurrent.*;
 
