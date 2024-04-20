@@ -231,3 +231,10 @@
         복잡한 (현실세계의 문제를 해결하는데 꼭 필요한) 로직을 다루기 힘듬
   - CompletableFuture
     - Future 인터페이스를 확장한 CompletableFuture 클래스는 비동기 작업을 더 쉽게 처리할 수 있도록 도와주는 클래스.
+    - get() vs join()
+      - get(): 작업이 완료될 때까지 대기하며, 작업이 완료되면 결과를 가져옴.
+      - join(): 작업이 완료될 때까지 대기하며, 작업이 완료되면 결과를 가져옴. get()과의 차이점은 join()은 checked exception을 던지지 않음.
+    - thenApply(): 작업이 완료된 후, CompletableFuture가 완료된 스레드에서 결과를 가공하거나 변환하는 작업을 수행함.
+    - thenApplyAsnyc(): 작업이 완료된 후, 새로운 메서드에서 결과를 가공하거나 변환하는 작업을 수행함.
+    - thenCompose(): 두 개의 CompletableFuture를 조합하여 하나의 CompletableFuture로 만드는 작업 수행.
+    - thenCombine(): 두 개의 CompletableFuture의 결과를 조합하여 하나의 결과로 만드는 작업 수행.
