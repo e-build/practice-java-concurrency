@@ -236,7 +236,7 @@
       - join(): 작업이 완료될 때까지 대기하며, 작업이 완료되면 결과를 가져옴. get()과의 차이점은 join()은 checked exception을 던지지 않음.
     - thenApply(): 작업이 완료된 후, CompletableFuture가 완료된 스레드에서 결과를 가공하거나 변환하는 작업을 수행함.
     - thenApplyAsnyc(): 작업이 완료된 후, 새로운 메서드에서 결과를 가공하거나 변환하는 작업을 수행함.
-    - thenCompose(): 두 개의 CompletableFuture를 조합하여 하나의 CompletableFuture로 만드는 작업 수행.
-    - thenCombine(): 두 개의 CompletableFuture의 결과를 조합하여 하나의 결과로 만드는 작업 수행.
     - thenAccept(): 작업이 완료된 후, 결과를 소비하는 작업을 수행함. 결과는 한번만 소비될 수 있음
     - thenRun(): 작업이 완료된 후, 결과를 사용하지 않고 다른 작업을 수행함.
+    - thenCompose(): 두 개의 CompletableFuture를 조합하여 하나의 CompletableFuture로 만드는 작업 수행.
+    - thenCombine(): 이전 CompletableFuture 작업의 결과를 사용 하여 다른 CompletableFuture 작업 실행
