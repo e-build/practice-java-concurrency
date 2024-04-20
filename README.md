@@ -238,3 +238,5 @@
     - thenApplyAsnyc(): 작업이 완료된 후, 새로운 메서드에서 결과를 가공하거나 변환하는 작업을 수행함.
     - thenCompose(): 두 개의 CompletableFuture를 조합하여 하나의 CompletableFuture로 만드는 작업 수행.
     - thenCombine(): 두 개의 CompletableFuture의 결과를 조합하여 하나의 결과로 만드는 작업 수행.
+    - thenAccept(): 작업이 완료된 후, 결과를 소비하는 작업을 수행함. 결과는 한번만 소비될 수 있음
+    - thenRun(): 작업이 완료된 후, 결과를 사용하지 않고 다른 작업을 수행함.
