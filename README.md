@@ -240,3 +240,5 @@
     - thenRun(): 작업이 완료된 후, 결과를 사용하지 않고 다른 작업을 수행함.
     - thenCompose(): 두 개의 CompletableFuture를 조합하여 하나의 CompletableFuture로 만드는 작업 수행.
     - thenCombine(): 이전 CompletableFuture 작업의 결과를 사용 하여 다른 CompletableFuture 작업 실행
+    - allOf(): 모든 CompletableFuture가 완료될 때까지 대기하며, 모든 CompletableFuture가 완료되면 결과를 반환함.
+    - anyOf(): 모든 CompletableFuture 중 하나라도 완료되면 결과를 반환함.
