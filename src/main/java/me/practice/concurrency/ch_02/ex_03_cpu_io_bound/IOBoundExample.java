@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 public class IOBoundExample {
     public static void main(String[] args) {
-        int numThreads = Runtime.getRuntime().availableProcessors() / 2;
+        int numThreads = Runtime.getRuntime().availableProcessors() * 2;
         ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
 
         for (int i = 0; i < numThreads; i++) {

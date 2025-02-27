@@ -9,7 +9,8 @@ public class ThreadStack {
         }
 
     }
-    static class MyRunnable implements Runnable{
+
+    static class MyRunnable implements Runnable {
 
         private final int threadId;
 

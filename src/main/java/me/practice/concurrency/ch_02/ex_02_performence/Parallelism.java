@@ -36,7 +36,7 @@ public class Parallelism {
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    return i * i;
+                    return 0;
                 })
                 .sum();
     }

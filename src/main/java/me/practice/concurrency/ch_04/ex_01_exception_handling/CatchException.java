@@ -8,7 +8,7 @@ public class CatchException {
             new Thread(() -> {
                 throw new RuntimeException("스레드 1 예외!");
             }).start();
-        }catch(Exception e){
+        } catch (Exception e) {
             sendNotificationToAdmin(e);
         }
 

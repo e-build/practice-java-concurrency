@@ -35,6 +35,7 @@ public class WaitingStateNotifyThread {
         synchronized (lock) {
 //             lock.notify(); // 하나의 스레드만 깨우기 -  JVM의 스케줄링 정책에 의해 임의로 선택
             lock.notifyAll(); // 모든 대기중인 스레드를 깨우기
+//            Thread.sleep(1000);
         }
         /*
         notify() 또는 notifyAll() 메서드를 호출하는 스레드는 해당 객체의 모니터 락을 소유하고 있어야 함

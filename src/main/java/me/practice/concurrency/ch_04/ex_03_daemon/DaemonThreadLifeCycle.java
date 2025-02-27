@@ -22,12 +22,11 @@ public class DaemonThreadLifeCycle {
             }
         });
 
-        daemonThread.setDaemon(true);
+//        daemonThread.setDaemon(true);
         daemonThread.setDaemon(false);
 
         userThread.start();
         daemonThread.start();
-
 
         userThread.join();
 
