@@ -7,32 +7,32 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class IOBoundExample {
-    public static void main(String[] args) {
-        int numThreads = Runtime.getRuntime().availableProcessors() * 2;
-        ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
+	public static void main(String[] args) {
+		int numThreads = Runtime.getRuntime().availableProcessors() * 2;
+		ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
 
-        for (int i = 0; i < numThreads; i++) {
-            executorService.submit(() -> {
-                try {
+		for (int i = 0; i < numThreads; i++) {
+			executorService.submit(() -> {
+				try {
 
-                    // IO 가 집중 되는 작업
-                    for (int j = 0; j < 5; j++) {
-                        Files.readAllLines(Path.of("/Users/donggeollee/IdeaProjects/ebuild-github/practice-java-concurrency/src/main/java/me/practice/concurrency/ch_02/ex_03_cpu_io_bound/sample.txt"));
-                        System.out.println("스레드: " + Thread.currentThread().getName() +", " +j); // IO Bound 일때 ContextSwitching 이 일어난다
-                    }
+					// IO 가 집중 되는 작업
+					for (int j = 0; j < 5; j++) {
+						Files.readAllLines(Path.of("/Users/donggeollee/IdeaProjects/ebuild-github/practice-java-concurrency/src/main/java/me/practice/concurrency/ch_02/ex_03_cpu_io_bound/sample.txt"));
+						System.out.println("스레드: " + Thread.currentThread().getName() + ", " + j); // IO Bound 일때 ContextSwitching 이 일어난다
+					}
 
-                    // 아주 빠른 Cpu 연산
-                    int result = 0;
-                    for (long j = 0; j < 10; j++) {
-                        result += j;
-                    }
+					// 아주 빠른 Cpu 연산
+					int result = 0;
+					for (long j = 0; j < 10; j++) {
+						result += j;
+					}
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		}
 
-        executorService.shutdown();
-    }
+		executorService.shutdown();
+	}
 }
